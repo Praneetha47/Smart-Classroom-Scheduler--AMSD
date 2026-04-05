@@ -1,147 +1,70 @@
-# SmartSched Backend — Setup Guide
+# Getting Started with Create React App
 
-## What You Need Installed First
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-1. **Node.js** → Download from https://nodejs.org (pick the LTS version)
-2. **MongoDB** → Download from https://www.mongodb.com/try/download/community
-   - Install it, then start it (it runs in the background)
+## Available Scripts
 
----
+In the project directory, you can run:
 
-## Step-by-Step Setup
+### `npm start`
 
-### 1. Put the backend folder anywhere on your computer
-For example: `C:\Users\YourName\smartsched-backend\`
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### 2. Open a terminal (Command Prompt or VS Code terminal)
-Navigate to your backend folder:
-```
-cd C:\Users\YourName\smartsched-backend
-```
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-### 3. Install all packages
-```
-npm install
-```
+### `npm test`
 
-### 4. Start MongoDB
-On Windows, MongoDB runs as a service automatically after install.
-To check, open Task Manager → Services → look for "MongoDB".
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-On Mac/Linux:
-```
-brew services start mongodb-community
-```
+### `npm run build`
 
-### 5. Start the backend server
-```
-npm run dev
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-You should see:
-```
-✅ MongoDB connected
-🚀 Server running on http://localhost:5000
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### 6. Test it works
-Open your browser and go to:
-```
-http://localhost:5000
-```
-You should see: `{"message":"SmartSched API is running ✅"}`
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
----
+### `npm run eject`
 
-## Connect Your React Frontend
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-### 1. Copy `api.js` into your React project
-Put it at: `src/api.js`
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### 2. Install axios in your frontend project
-```
-npm install axios
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-### 3. Update your Login page to use real auth
-In `Login.jsx`, replace the simulated login with:
-```js
-import { login } from "../api";
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-const handleLogin = async (e) => {
-  e.preventDefault();
-  setError("");
-  setLoading(true);
-  try {
-    const res = await login({ username, password });
-    localStorage.setItem("token", res.data.token);
-    navigate("/dashboard");
-  } catch (err) {
-    setError("Invalid username or password.");
-    setLoading(false);
-  }
-};
-```
+## Learn More
 
----
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## API Endpoints Reference
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-| Method | URL                     | What it does              | Auth needed? |
-|--------|-------------------------|---------------------------|--------------|
-| POST   | /api/auth/login         | Login, returns JWT token  | No           |
-| GET    | /api/classrooms         | Get all classrooms        | No           |
-| POST   | /api/classrooms         | Add a classroom           | Yes          |
-| DELETE | /api/classrooms/:id     | Delete a classroom        | Yes          |
-| GET    | /api/faculty            | Get all faculty           | No           |
-| POST   | /api/faculty            | Add a faculty member      | Yes          |
-| DELETE | /api/faculty/:id        | Delete faculty            | Yes          |
-| GET    | /api/courses            | Get all courses           | No           |
-| POST   | /api/courses            | Add a course              | Yes          |
-| DELETE | /api/courses/:id        | Delete a course           | Yes          |
-| GET    | /api/schedule           | Get all schedule entries  | No           |
-| POST   | /api/schedule           | Add schedule (with conflict check) | Yes |
-| DELETE | /api/schedule/:id       | Delete a schedule entry   | Yes          |
+### Code Splitting
 
----
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## Project File Structure
+### Analyzing the Bundle Size
 
-```
-smartsched-backend/
-├── server.js              ← Main entry point (run this)
-├── .env                   ← Your settings (port, DB URL, secret)
-├── package.json           ← Dependencies list
-├── api.js                 ← Copy this to your React src/ folder
-├── middleware/
-│   └── auth.js            ← JWT token checker
-├── models/
-│   ├── Classroom.js       ← Classroom database schema
-│   ├── Faculty.js         ← Faculty database schema
-│   ├── Course.js          ← Course database schema
-│   └── Schedule.js        ← Schedule database schema
-└── routes/
-    ├── auth.js            ← Login route
-    ├── classrooms.js      ← Classroom CRUD routes
-    ├── faculty.js         ← Faculty CRUD routes
-    ├── courses.js         ← Courses CRUD routes
-    └── schedule.js        ← Schedule CRUD + conflict detection
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
----
+### Making a Progressive Web App
 
-## Default Login
-- **Username:** admin
-- **Password:** admin123
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
----
+### Advanced Configuration
 
-## Common Problems & Fixes
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-| Problem | Fix |
-|---------|-----|
-| `MongoDB connection error` | Make sure MongoDB is running |
-| `npm install` fails | Make sure Node.js is installed |
-| Frontend can't connect | Make sure backend is running on port 5000 |
-| `401 Unauthorized` errors | You're not logged in — login first to get a token |
-| Port already in use | Change PORT in .env to 5001 |
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
